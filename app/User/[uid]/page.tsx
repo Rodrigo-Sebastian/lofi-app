@@ -1,16 +1,10 @@
-import React from 'react';
+import UserMain from '../UserMain'
 import UserNav from '../UserNav';
-import UserMain from '../UserMain';
 import UserResponsiveNav from '../UserResponsiveNav';
 
-interface PageProps {
-  params: {
-    uid: string;
-  };
-}
-
-const Page = async ({ params }: PageProps) => {
-  const { uid } = params; // Här är uid tillgängligt direkt
+export default async function Page({ params }: { params: Promise<{ uid: string }> }) {
+  const awaitedParams = await params;
+  const { uid } = awaitedParams;
 
   return (
     <div className='mx-auto max-w-7xl bg-gray-50 p-4'>
@@ -18,9 +12,7 @@ const Page = async ({ params }: PageProps) => {
       <div>
         <UserResponsiveNav />
       </div>
-      <UserMain id={uid} /> {/* Skicka uid som prop */}
+      <UserMain id={uid} />
     </div>
   );
-};
-
-export default Page;
+}
