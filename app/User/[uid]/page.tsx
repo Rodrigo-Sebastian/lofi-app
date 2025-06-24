@@ -9,7 +9,7 @@ interface PageProps {
   };
 }
 
-const Page: React.FC<PageProps> = async ({ params }) => {
+const Page = async ({ params }: PageProps) => {
   const { uid } = params; // Här är uid tillgängligt direkt
 
   return (
